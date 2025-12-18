@@ -1,0 +1,38 @@
+[
+  {
+    "name": "SUR",
+    "weight": 0.5,
+    "rarity": "SUR",
+    "images": ["prizes/SUR/a.png"]
+  },
+  {
+    "name": "SFA",
+    "weight": 7,
+    "rarity": "SFA",
+    "images": ["prizes/SFA/a2.png","prizes/SFA/a3.png"]
+  },
+  {
+    "name": "SIR",
+    "weight": 10,
+    "rarity": "SIR",
+    "images": ["prizes/SIR/a4.png","prizes/SIR/a5.png","prizes/SIR/a6.png","prizes/SIR/a7.png","prizes/SIR/a8.png","prizes/SIR/a9.png","prizes/SIR/a10.png"]
+  },
+  {
+    "name": "Ultra Rare",
+    "weight": 20.5,
+    "rarity": "Ultra Rare",
+    "images": ["prizes/Ultra/a11.png","prizes/Ultra/a12.png","prizes/Ultra/a13.png","prizes/Ultra/a14.png","prizes/Ultra/a15.png","prizes/Ultra/a16.png","prizes/Ultra/a17.png"]
+  },
+  {
+    "name": "Rare",
+    "weight": 26.5,
+    "rarity": "Rare",
+    "images": ["prizes/Rare/a18.png","prizes/Rare/a19.png","prizes/Rare/a20.png","prizes/Rare/a21.png","prizes/Rare/a22.png","prizes/Rare/a23.png","prizes/Rare/a24.png"]
+  },
+  {
+    "name": "Common",
+    "weight": 35,
+    "rarity": "Common",
+    "images": ["prizes/Common/a25.png","prizes/Common/a26.png","prizes/Common/a27.png","prizes/Common/a28.png","prizes/Common/a29.png","prizes/Common/a30.png","prizes/Common/a31.png"]
+  }
+]

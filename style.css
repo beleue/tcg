@@ -1,0 +1,153 @@
+/* 1. IMPORTE DE FUENTES */
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@400;600;700&family=Poppins:wght@400;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  /* Fondo solo con el gradiente */
+  background: radial-gradient(circle at top, #FFB2CC, white);
+  color: #333;
+  text-align: center;
+  margin: 0;
+  /* Permite scroll horizontal */
+  overflow-x: auto; 
+  overflow-y: scroll;
+  position: relative;
+}
+
+/* 2. TÍTULO H1 */
+h1 {
+  font-family: 'Mitr', sans-serif;
+  color: #e08bb6; 
+  font-size: 4.5em; 
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: lowercase; 
+  margin-top: 0;
+}
+
+/* 3. CONTENEDOR PRINCIPAL (MAX/MIN WIDTH FIJO AJUSTADO) */
+.container {
+  position: relative;
+  z-index: 1;
+  /* CAMBIO: Ancho FIJO para 3 cartas de 360px + gaps (1120px) */
+  min-width: 1120px; 
+  max-width: 1120px; 
+  margin: 40px auto;
+  padding: 30px;
+  display: block;
+  height: auto;
+}
+
+.buttons {
+  margin-bottom: 20px;
+}
+
+button {
+  background: linear-gradient(145deg, #FFB2CC, #e08bb6);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 5px 15px rgba(255, 178, 204, 0.5);
+}
+
+button:hover {
+  transform: scale(1.1) rotate(-2deg);
+  box-shadow: 0 10px 25px rgba(255, 178, 204, 0.8);
+}
+
+/* 4. LAYOUT DE TRES CARTAS POR FILA (TAMAÑO FIJO Y AUMENTADO) */
+.results {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; 
+  justify-content: center; 
+  align-items: flex-start; 
+  gap: 20px; 
+  /* Ancho fijo igual al contenedor */
+  width: 1120px; 
+}
+
+.card {
+  /* CAMBIO: ANCHO FIJO AUMENTADO (300px * 1.2 = 360px) */
+  width: 360px; 
+  /* CAMBIO: ALTURA FIJA AUMENTADA (420px * 1.2 = 504px) */
+  height: 504px; 
+  perspective: 1000px;
+  position: relative;
+  overflow: visible;
+}
+
+/* --- CLASES DE RESPLANDOR (GLOW) ESPECÍFICAS --- */
+
+/* 🥇 GLOW DORADO para la carta SUR */
+.glow-sur .card-inner {
+    box-shadow: 0 0 20px 8px rgba(255, 215, 0, 0.9), 
+                0 0 40px 15px rgba(255, 165, 0, 0.7); 
+    transition: box-shadow 0.5s ease-in-out;
+}
+
+/* 💜 GLOW MORADO para la carta SFA */
+.glow-sfa .card-inner {
+    box-shadow: 0 0 20px 8px rgba(155, 93, 229, 0.9), 
+                0 0 40px 15px rgba(106, 76, 147, 0.7); 
+    transition: box-shadow 0.5s ease-in-out;
+}
+
+/* 💖 GLOW ROSADO para la carta SIR */
+.glow-sir .card-inner {
+    box-shadow: 0 0 20px 8px rgba(255, 105, 180, 0.9), 
+                0 0 40px 15px rgba(255, 192, 203, 0.7); 
+    transition: box-shadow 0.5s ease-in-out;
+}
+
+/* ----------------------------------------------- */
+
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  z-index: 2;
+  border-radius: 25px;
+}
+
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 25px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: 4px solid white;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.card-back img,
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 25px;
+  display: block;
+}

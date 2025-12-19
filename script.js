@@ -19,12 +19,17 @@ function weightedRandom(cards) {
   return null;
 }
 
+/**
+ * Mapea la rareza a la clase CSS, incluyendo las clases de glow.
+ */
 function rarityClass(rarity) {
   if (!rarity) return "common";
   const r = rarity.toString().trim().toLowerCase();
-  if (r === "sur") return "sur glow-sur"; 
-  if (r === "sfa") return "sfa glow-sfa"; 
-  if (r === "sir") return "sir glow-sir"; 
+  
+  if (r === "sur") return "sur glow-sur"; // Gold Glow
+  if (r === "sfa") return "sfa glow-sfa"; // Purple Glow
+  if (r === "sir") return "sir glow-sir"; // Pink Glow
+  
   return "common";
 }
 
@@ -38,14 +43,15 @@ async function setup() {
   const resultsDiv = document.getElementById("results");
 
   function renderDrawn(drawn) {
+    // 1. Limpiamos los resultados anteriores
     resultsDiv.innerHTML = "";
 
+    // 2. Creamos cada carta con su dorso (back.png)
     drawn.forEach(card => {
       const cardDiv = document.createElement("div");
-      // Iniciamos solo con la clase base 'card'
-      cardDiv.className = "card";
+      cardDiv.className = "card"; // Solo la clase base para la animación
       
-      // Guardamos la rareza en un atributo de datos para usarlo luego
+      // Guardamos la rareza en un atributo temporal
       const specialClasses = rarityClass(card.rarity);
       cardDiv.dataset.rarity = specialClasses;
 
@@ -53,7 +59,9 @@ async function setup() {
 
       cardDiv.innerHTML = `
         <div class="card-inner">
-          <div class="card-front"></div>
+          <div class="card-front">
+            <img src="back.png" alt="Dorso de la carta" />
+          </div>
           <div class="card-back">
             <img src="${randomImage}" alt="${card.name}" />
           </div>
@@ -62,31 +70,37 @@ async function setup() {
       resultsDiv.appendChild(cardDiv);
     });
 
-    // Aplicar flip y glow con retraso escalonado
+    // 3. Aplicar el efecto de giro y brillo escalonado
     document.querySelectorAll(".card").forEach((card, i) => {
       setTimeout(() => {
-        // Añadimos el giro Y las clases de rareza/brillo al mismo tiempo
+        // Añadimos la clase de giro
         card.classList.add("flipped");
+        
+        // Añadimos las clases de rareza (y el glow correspondiente)
         const classesToAdd = card.dataset.rarity.split(" ");
         card.classList.add(...classesToAdd);
-      }, 200 + i * 180);
+      }, 200 + i * 180); // Cada carta gira un poco después que la anterior
     });
   }
 
   function draw(n) {
     const drawn = [];
     const pool = [...cards]; 
+
     for (let i = 0; i < n; i++) {
       const c = weightedRandom(pool);
       if (!c) break;
       drawn.push(c);
     }
+
     renderDrawn(drawn);
   }
 
+  // Event Listeners para los botones
   drawOneBtn?.addEventListener("click", () => draw(1));
   drawFiveBtn?.addEventListener("click", () => draw(5));
   drawTenBtn?.addEventListener("click", () => draw(10));
 }
 
+// Iniciamos la configuración
 setup();

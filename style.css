@@ -55,7 +55,7 @@ button:hover {
   transform: scale(1.1) rotate(-2deg);
 }
 
-/* 4. CARTAS Y ANIMACIONES */
+/* 4. LAYOUT DE TRES CARTAS POR FILA */
 .results {
   display: flex;
   flex-direction: row;
@@ -67,12 +67,24 @@ button:hover {
 }
 
 .card {
+  /* CAMBIO: ANCHO Y ALTO FIJO */
   width: 360px; 
   height: 504px; 
   perspective: 1000px;
   position: relative;
+  overflow: visible;
+
+  /* --- AQUÍ AÑADES EL CURSOR --- */
+  cursor: url('pokeball.png'), pointer; 
+  
+  /* Un pequeño efecto para que la carta reaccione al pasar la pokebola */
+  transition: transform 0.3s ease;
 }
 
+/* OPCIONAL: Añade esto para que la carta se mueva un poco al tocarla con la pokebola */
+.card:hover {
+  transform: translateY(-5px) scale(1.02);
+}
 .card-inner {
   position: relative;
   width: 100%;

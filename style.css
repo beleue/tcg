@@ -3,12 +3,18 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  /* Fondo solo con el gradiente */
-  background: radial-gradient(circle at top, #FFB2CC, white);
+  /* CAMBIO 1: Usamos min-height para que el fondo cubra TODA la página, incluso con scroll */
+  min-height: 100vh;
+  
+  /* CAMBIO 2: Añadimos 'fixed' al gradiente para que no se mueva al scrollear */
+  background: radial-gradient(circle at top, #FFB2CC, white) no-repeat fixed;
+  
+  /* Asegura que el fondo cubra todo el espacio */
+  background-size: cover;
+
   color: #333;
   text-align: center;
   margin: 0;
-  /* Permite scroll horizontal */
   overflow-x: auto; 
   overflow-y: scroll;
   position: relative;

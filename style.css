@@ -81,16 +81,22 @@ button:hover {
   width: 1120px; 
 }
 
+/* Aplicamos el cursor a la carta Y a todo lo que tiene dentro */
+.card, 
+.card-inner, 
+.card-front, 
+.card-back,
+.card-front img {
+  /* Forzamos el cursor Loveball con !important */
+  cursor: url('pokeball.png'), pointer !important;
+}
+
 .card {
   width: 360px; 
   height: 504px; 
   perspective: 1000px;
   position: relative;
   overflow: visible;
-
-  /* CURSOR ESPECIAL PARA CARTAS: Loveball (Rosa) */
-  cursor: url('loveball.png'), pointer; 
-  
   transition: transform 0.3s ease;
 }
 
@@ -105,6 +111,8 @@ button:hover {
   transform-style: preserve-3d;
   transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   border-radius: 25px;
+  /* Evita que los clics se pierdan */
+  pointer-events: auto; 
 }
 
 .card.flipped .card-inner {

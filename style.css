@@ -46,9 +46,10 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* 5. BOTONES (Gradiente solicitado: rgba(234, 65, 157) y rgba(246, 55, 153)) */
+/* 5. BOTONES (Color actualizado: rgba(253, 91, 156)) */
 button {
-  background: linear-gradient(145deg, rgba(234, 65, 157), rgba(246, 55, 153));
+  /* Ahora con el color sólido solicitado */
+  background: rgba(253, 91, 156);
   color: white;
   border: none;
   padding: 14px 28px;
@@ -57,15 +58,18 @@ button {
   font-weight: 600;
   cursor: pointer;
   margin: 0 10px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 5px 15px rgba(234, 65, 157, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  
+  /* Sombra sutil basada en el nuevo color */
+  box-shadow: 0 5px 15px rgba(253, 91, 156, 0.4);
 }
 
 button:hover {
   transform: scale(1.1) rotate(-2deg);
-  box-shadow: 0 8px 20px rgba(234, 65, 157, 0.6);
+  /* Un color un poco más oscuro al pasar el mouse para dar feedback */
+  background: rgba(234, 65, 157);
+  box-shadow: 0 8px 20px rgba(253, 91, 156, 0.6);
 }
-
 /* 6. LAYOUT DE CARTAS */
 .results {
   display: flex;

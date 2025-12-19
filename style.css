@@ -1,3 +1,17 @@
+/* 1. IMPORTE DE FUENTES - ¡ESTO DEBE IR ARRIBA DEL TODO! */
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@400;600;700&family=Poppins:wght@400;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  /* ... resto de tu código del body ... */
+}
+
+h1 {
+  font-family: 'Mitr', sans-serif;
+  /* ... resto de tu código del h1 ... */
+}
+
+
 /* 1. CONFIGURACIÓN DEL BODY (Fondo uniforme y fijo) */
 body {
   font-family: 'Poppins', sans-serif;

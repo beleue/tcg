@@ -1,11 +1,15 @@
 /* 1. IMPORTE DE FUENTES - SIEMPRE DEBE SER LA PRIMERA LÍNEA */
 @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@400;600;700&family=Poppins:wght@400;600&display=swap');
 
-/* 2. CONFIGURACIÓN DEL BODY (Fondo solicitado: rgba(253, 199, 229)) */
+/* 2. CONFIGURACIÓN GLOBAL Y CURSOR TOTAL */
+* {
+  /* Esto aplica el cursor a TODOS los elementos (botones, links, imágenes) */
+  cursor: url('pokeball.png'), auto !important;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
-  /* Fondo uniforme solicitado */
   background: rgba(253, 199, 229) no-repeat fixed;
   background-size: cover;
   color: #333;
@@ -14,9 +18,42 @@ body {
   overflow-x: auto; 
   overflow-y: scroll;
   position: relative;
-  
-  /* CURSOR GENERAL: Pokéball */
-  cursor: url('pokeball.png'), auto;
+}
+
+/* 5. BOTONES */
+button {
+  background: rgba(253, 91, 156);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 5px 15px rgba(253, 91, 156, 0.4);
+  /* Forzamos que el botón también use la pokeball */
+  cursor: url('pokeball.png'), pointer !important;
+}
+
+/* 6. CARTAS (Si quieres que aquí sea la Loveball Rosa, mantenemos esto) */
+.card, 
+.card-inner, 
+.card-front, 
+.card-back,
+.card-front img,
+.card-back img {
+  /* La Loveball solo aparecerá cuando estés sobre una carta */
+  cursor: url('loveball.png'), pointer !important;
+}
+
+.card {
+  width: 360px; 
+  height: 504px; 
+  perspective: 1000px;
+  position: relative;
+  overflow: visible;
+  transition: transform 0.3s ease;
 }
 
 /* 3. TÍTULO (Color solicitado: rgba(234, 65, 157)) */

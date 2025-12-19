@@ -42,16 +42,13 @@ async function setup() {
   const drawTenBtn = document.getElementById("draw-ten");
   const resultsDiv = document.getElementById("results");
 
-  function renderDrawn(drawn) {
-    // 1. Limpiamos los resultados anteriores
+function renderDrawn(drawn) {
     resultsDiv.innerHTML = "";
 
-    // 2. Creamos cada carta con su dorso (back.png)
     drawn.forEach(card => {
       const cardDiv = document.createElement("div");
-      cardDiv.className = "card"; // Solo la clase base para la animación
+      cardDiv.className = "card"; 
       
-      // Guardamos la rareza en un atributo temporal
       const specialClasses = rarityClass(card.rarity);
       cardDiv.dataset.rarity = specialClasses;
 
@@ -67,19 +64,21 @@ async function setup() {
           </div>
         </div>
       `;
-      resultsDiv.appendChild(cardDiv);
-    });
 
-    // 3. Aplicar el efecto de giro y brillo escalonado
-    document.querySelectorAll(".card").forEach((card, i) => {
-      setTimeout(() => {
-        // Añadimos la clase de giro
-        card.classList.add("flipped");
-        
-        // Añadimos las clases de rareza (y el glow correspondiente)
-        const classesToAdd = card.dataset.rarity.split(" ");
-        card.classList.add(...classesToAdd);
-      }, 200 + i * 180); // Cada carta gira un poco después que la anterior
+      // --- NUEVO: EVENTO DE CLIC PARA GIRAR ---
+      cardDiv.addEventListener("click", function() {
+        // Si la carta ya está girada, no hace nada (opcional)
+        if (!this.classList.contains("flipped")) {
+          this.classList.add("flipped");
+          
+          // Añadimos el brillo (glow) justo al hacer click
+          const classesToAdd = this.dataset.rarity.split(" ");
+          this.classList.add(...classesToAdd);
+        }
+      });
+      // ---------------------------------------
+
+      resultsDiv.appendChild(cardDiv);
     });
   }
 

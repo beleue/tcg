@@ -1,87 +1,81 @@
 /* 1. IMPORTE DE FUENTES */
-@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@700&family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@400;600;700&family=Poppins:wght@400;600&display=swap');
 
-/* 2. CONFIGURACIÓN BASE */
+/* 2. CONFIGURACIÓN GLOBAL Y CURSOR POKEBALL */
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
-body {
-  background: #d6e0ef no-repeat fixed;
+html, body {
+  background: #f0fdfd no-repeat fixed;
   background-size: cover;
-  color: #ff6666;
+  color: #fdf8f0;
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
   text-align: center;
-  overflow-x: hidden;
+  margin: 0;
+  overflow-x: auto; 
+  overflow-y: scroll;
+  position: relative;
   cursor: url('pokeball.png'), auto;
-  /* Centrado del contenido principal */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 /* 3. TÍTULO */
 h1 {
   font-family: 'Mitr', sans-serif;
-  color: #ff6666; 
+  color: #fdf8f0; 
   font-size: 4.5em; 
   font-weight: 700;
+  letter-spacing: 2px;
   text-transform: lowercase; 
-  margin: 40px 0;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
+  margin-top: 20px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* 4. CONTENEDOR DE BOTONES (Restaurado) */
-.buttons {
-  margin-bottom: 40px; /* Margen estándar */
+/* 4. CONTENEDOR Y LAYOUT */
+.container {
+  position: relative;
+  z-index: 1;
+  min-width: 1120px; 
+  max-width: 1120px; 
+  margin: 40px auto;
+  padding: 30px;
+}
+
+.results {
   display: flex;
-  gap: 15px;
-  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap; 
+  justify-content: center; 
+  align-items: flex-start; 
+  gap: 20px; 
+  width: 1120px; 
 }
 
+/* 5. BOTONES */
 button {
-  background: #ffefb4;
-  color: #ff6666; 
-  border: 1px solid #f2dfa0;
+  background: #fdf0f0;
+  color: #333; 
+  border: 1px solid #e0d0d0;
   padding: 14px 28px;
   border-radius: 20px;
   font-size: 16px;
-  font-weight: 700;
-  cursor: url('pokeball.png'), pointer;
-  transition: transform 0.2s;
+  font-weight: 600;
+  margin: 0 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  cursor: url('pokeball.png'), pointer;
 }
 
 button:hover {
-  transform: scale(1.1);
-  background: #fff5d1;
+  transform: scale(1.1) rotate(-2deg);
+  background: #f5e5e5;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* 5. RESULTADOS (Forzado a 2 columnas centradas) */
-#results {
-  display: grid !important;
-  /* Dos columnas de 360px (el tamaño original) */
-  grid-template-columns: repeat(2, 360px); 
-  justify-content: center; 
-  gap: 30px; 
-  width: 100%;
-  max-width: 800px; /* Espacio para 2 cartas + gap */
-  margin: 0 auto;
-  padding-bottom: 60px;
-}
-
-/* Ajuste para móviles: si la pantalla es pequeña, se pone 1 columna */
-@media (max-width: 780px) {
-  #results {
-    grid-template-columns: 360px;
-  }
-}
-
-/* 6. CARTAS (TAMAÑO ORIGINAL) */
-.card, .card * {
+/* 6. CARTAS Y CURSOR LOVEBALL */
+.card, 
+.card * {
   cursor: url('loveball.png'), pointer !important;
 }
 
@@ -90,6 +84,11 @@ button:hover {
   height: 504px; 
   perspective: 1000px;
   position: relative;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
 }
 
 .card-inner {
@@ -99,6 +98,7 @@ button:hover {
   transform-style: preserve-3d;
   transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
   border-radius: 25px;
+  pointer-events: auto; 
 }
 
 .card.flipped .card-inner {
@@ -126,7 +126,13 @@ button:hover {
   display: block;
 }
 
-/* 7. EFECTOS DE BRILLO */
-.glow-sur .card-inner { box-shadow: 0 0 25px 10px rgba(255, 215, 0, 0.6); }
-.glow-sfa .card-inner { box-shadow: 0 0 25px 10px rgba(155, 93, 229, 0.6); }
-.glow-sir .card-inner { box-shadow: 0 0 25px 10px rgba(255, 105, 180, 0.6); }
+/* --- EFECTOS DE BRILLO (GLOW) --- */
+.glow-sur .card-inner, 
+.glow-sfa .card-inner, 
+.glow-sir .card-inner {
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55), box-shadow 0.5s ease-in-out !important;
+}
+
+.glow-sur .card-inner { box-shadow: 0 0 25px 10px rgba(255, 215, 0, 0.8); }
+.glow-sfa .card-inner { box-shadow: 0 0 25px 10px rgba(155, 93, 229, 0.8); }
+.glow-sir .card-inner { box-shadow: 0 0 25px 10px rgba(255, 105, 180, 0.8); }

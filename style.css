@@ -137,9 +137,9 @@ button:hover {
 }
 
 /* GLOW EFFECTS */
-.glow-sur .card-inner,
-.glow-sfa .card-inner,
-.glow-sir .card-inner {
+.glow-sur,
+.glow-sfa,
+.glow-sir  {
   transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55),
               box-shadow 0.5s ease-in-out !important;
 }

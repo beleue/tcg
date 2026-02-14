@@ -11,6 +11,8 @@ async function loadCards() {
 
 function weightedRandom(cards) {
   const totalWeight = cards.reduce((s, c) => s + (c.weight || 0), 0);
+  if (totalWeight <= 0) return null; // Evita errores si el mazo se queda vacío
+  
   let random = Math.random() * totalWeight;
   for (let card of cards) {
     random -= (card.weight || 0);
@@ -19,17 +21,12 @@ function weightedRandom(cards) {
   return null;
 }
 
-/**
- * Mapea la rareza a la clase CSS, incluyendo las clases de glow.
- */
 function rarityClass(rarity) {
   if (!rarity) return "common";
   const r = rarity.toString().trim().toLowerCase();
-  
-  if (r === "sur") return "sur glow-sur"; // Gold Glow
-  if (r === "sfa") return "sfa glow-sfa"; // Purple Glow
-  if (r === "sir") return "sir glow-sir"; // Pink Glow
-  
+  if (r === "sur") return "sur glow-sur"; 
+  if (r === "sfa") return "sfa glow-sfa"; 
+  if (r === "sir") return "sir glow-sir"; 
   return "common";
 }
 
@@ -42,9 +39,8 @@ async function setup() {
   const drawTenBtn = document.getElementById("draw-ten");
   const resultsDiv = document.getElementById("results");
 
-function renderDrawn(drawn) {
+  function renderDrawn(drawn) {
     resultsDiv.innerHTML = "";
-
     drawn.forEach(card => {
       const cardDiv = document.createElement("div");
       cardDiv.className = "card"; 
@@ -52,6 +48,7 @@ function renderDrawn(drawn) {
       const specialClasses = rarityClass(card.rarity);
       cardDiv.dataset.rarity = specialClasses;
 
+      // Elegimos una imagen al azar de las disponibles para esa carta
       const randomImage = card.images[Math.floor(Math.random() * card.images.length)];
 
       cardDiv.innerHTML = `
@@ -65,41 +62,41 @@ function renderDrawn(drawn) {
         </div>
       `;
 
-      // --- NUEVO: EVENTO DE CLIC PARA GIRAR ---
       cardDiv.addEventListener("click", function() {
-        // Si la carta ya está girada, no hace nada (opcional)
         if (!this.classList.contains("flipped")) {
           this.classList.add("flipped");
-          
-          // Añadimos el brillo (glow) justo al hacer click
           const classesToAdd = this.dataset.rarity.split(" ");
           this.classList.add(...classesToAdd);
         }
       });
-      // ---------------------------------------
 
       resultsDiv.appendChild(cardDiv);
     });
   }
 
+  // --- FUNCIÓN ACTUALIZADA: SIN DUPLICADOS ---
   function draw(n) {
     const drawn = [];
-    const pool = [...cards]; 
+    // Creamos una copia del mazo para poder quitar cartas sin romper el original
+    let pool = [...cards]; 
 
     for (let i = 0; i < n; i++) {
       const c = weightedRandom(pool);
       if (!c) break;
+      
       drawn.push(c);
+
+      // Eliminamos la carta seleccionada del pool para que no pueda salir otra vez
+      // Buscamos por nombre o ID (asumiendo que card.name es único)
+      pool = pool.filter(card => card !== c); 
     }
 
     renderDrawn(drawn);
   }
 
-  // Event Listeners para los botones
   drawOneBtn?.addEventListener("click", () => draw(1));
   drawFiveBtn?.addEventListener("click", () => draw(5));
   drawTenBtn?.addEventListener("click", () => draw(10));
 }
 
-// Iniciamos la configuración
 setup();

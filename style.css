@@ -10,9 +10,9 @@
 body {
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
-  background: #cfd1f8 no-repeat fixed;
+  background: #d6e0ef no-repeat fixed; /* fondo */
   background-size: cover;
-  color: #333;
+  color: #ff6666; /* color de letras */
   text-align: center;
   margin: 0;
   overflow-x: auto;
@@ -22,14 +22,14 @@ body {
 /* 3. TITLE */
 h1 {
   font-family: 'Mitr', sans-serif;
-  color: rgba(253, 91, 156);
+  color: #ff6666;
   font-size: 4.5em;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: lowercase;
   margin-top: 20px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 
 /* 4. CONTAINER */
 .container {
@@ -40,23 +40,22 @@ h1 {
 
 /* 5. BUTTONS */
 button {
-  background: rgba(253, 91, 156);
-  color: white;
-  border: none;
+  background: #ffefb4;     /* color botón */
+  color: #ff6666;          /* texto botón */
+  border: 1px solid #f2dfa0; /* borde suave opcional */
   padding: 14px 28px;
   border-radius: 20px;
   font-size: 16px;
   font-weight: 600;
   margin: 0 10px;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-  box-shadow: 0 5px 15px rgba(253, 91, 156, 0.4);
+  box-shadow: 0 5px 15px rgba(255, 102, 102, 0.3);
   cursor: url('pokeball.png'), pointer !important;
 }
 
 button:hover {
-  transform: scale(1.1) rotate(-2deg);
-  background: rgba(234, 65, 157);
-  box-shadow: 0 8px 20px rgba(253, 91, 156, 0.6);
+  transform: scale(1.1);
+  background: #ffe79a; /* un poquito más oscuro al hover */
 }
 
 /* 6. CARD LAYOUT */

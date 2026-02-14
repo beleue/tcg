@@ -1,102 +1,86 @@
-/* 1. IMPORTE DE FUENTES */
-@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@400;600;700&family=Poppins:wght@400;600&display=swap');
+/* 1. FUENTES */
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@700&family=Poppins:wght@400;700&display=swap');
 
-/* 2. RESET TOTAL */
+/* 2. RESET TOTAL (Elimina cualquier margen fantasma) */
 * {
-  box-sizing: border-box;
+  box-sizing: border-box !important;
   margin: 0;
   padding: 0;
 }
 
-html, body {
-  width: 100% !important;
-  min-height: 100vh;
-  background: #d6e0ef no-repeat fixed;
-  background-size: cover;
+body {
+  background: #d6e0ef;
   color: #ff6666;
   font-family: 'Poppins', sans-serif;
-  /* Forzamos que todo el contenido del body se centre */
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important; 
-  cursor: url('pokeball.png'), auto;
+  min-height: 100vh;
+  width: 100vw;
   overflow-x: hidden;
+  /* Esto centra TODO lo que esté dentro del body */
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  cursor: url('pokeball.png'), auto;
 }
 
 /* 3. TÍTULO */
 h1 {
   font-family: 'Mitr', sans-serif;
-  color: #ff6666; 
-  font-size: 4.5em; 
-  font-weight: 700;
-  text-transform: lowercase; 
+  font-size: 4.5em;
   margin: 40px 0;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
-  width: 100%;
   text-align: center;
 }
 
-/* 4. CONTENEDOR PRINCIPAL */
-.container {
-  width: 100% !important;
-  max-width: 1200px;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  padding: 20px;
-}
-
+/* 4. BOTONES */
 .buttons {
-  margin-bottom: 60px;
   display: flex;
-  gap: 15px;
   justify-content: center;
+  gap: 20px;
+  margin-bottom: 60px;
   width: 100%;
 }
 
-/* 5. RESULTADOS (Forzado a 2 cartas centradas) */
-.results {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important; /* CENTRADO CRÍTICO */
-  align-items: flex-start !important;
-  gap: 30px !important;
-  /* (360px * 2) + gap = 750px aprox. */
-  /* Al poner este max-width, la tercera carta NO cabe y baja */
-  max-width: 780px !important; 
-  width: 100% !important;
-  margin: 0 auto !important;
-}
-
-/* 6. BOTONES */
 button {
   background: #ffefb4;
-  color: #ff6666; 
+  color: #ff6666;
   border: 1px solid #f2dfa0;
   padding: 14px 28px;
   border-radius: 20px;
-  font-size: 16px;
   font-weight: 700;
   cursor: url('pokeball.png'), pointer;
-  transition: transform 0.2s;
+  transition: 0.2s;
 }
 
-button:hover {
-  transform: scale(1.1);
+/* 5. RESULTADOS (EL ARREGLO DEFINITIVO) */
+#results {
+  display: grid !important;
+  /* Creamos 2 columnas fijas de 360px */
+  grid-template-columns: 360px 360px !important; 
+  /* Centramos la rejilla completa */
+  justify-content: center !important; 
+  /* Espacio entre cartas */
+  gap: 40px !important; 
+  width: 100% !important;
+  max-width: 1200px;
+  margin: 0 auto !important;
+  padding-bottom: 100px;
 }
 
-/* 7. CARTAS (TAMAÑO ORIGINAL) */
+/* Si la pantalla es pequeña (móvil), pasamos a 1 columna */
+@media (max-width: 800px) {
+  #results {
+    grid-template-columns: 360px !important;
+  }
+}
+
+/* 6. CARTAS (TAMAÑO ORIGINAL) */
 .card, .card * {
   cursor: url('loveball.png'), pointer !important;
 }
 
 .card {
-  width: 360px !important; 
-  height: 504px !important; 
+  width: 360px;
+  height: 504px;
   perspective: 1000px;
-  position: relative;
-  /* Importante para que no se peguen al bajar de fila */
-  margin-bottom: 10px; 
 }
 
 .card-inner {
@@ -127,12 +111,12 @@ button:hover {
 }
 
 .card-back img, .card-front img {
-  width: 100% !important;
-  height: 100% !important;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
-/* --- GLOWS --- */
-.glow-sur .card-inner { box-shadow: 0 0 25px 10px rgba(255, 215, 0, 0.6) !important; }
-.glow-sfa .card-inner { box-shadow: 0 0 25px 10px rgba(155, 93, 229, 0.6) !important; }
-.glow-sir .card-inner { box-shadow: 0 0 25px 10px rgba(255, 105, 180, 0.6) !important; }
+/* 7. GLOWS */
+.glow-sur .card-inner { box-shadow: 0 0 25px 10px rgba(255, 215, 0, 0.6); }
+.glow-sfa .card-inner { box-shadow: 0 0 25px 10px rgba(155, 93, 229, 0.6); }
+.glow-sir .card-inner { box-shadow: 0 0 25px 10px rgba(255, 105, 180, 0.6); }

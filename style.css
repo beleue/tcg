@@ -1,145 +1,535 @@
 /* 1. IMPORTE DE FUENTES */
+
 @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@400;600;700&family=Poppins:wght@400;600&display=swap');
 
+
+
 /* 2. CONFIGURACIÓN GLOBAL */
+
 * {
+
+  /* Cursor general de Pokeball */
+
+  cursor: url('pokeball.png'), auto !important;
+
   box-sizing: border-box;
+
 }
 
-/* CURSOR GENERAL (Pokeball) */
-html, body {
-  /* Usamos auto para que el navegador decida, pero la base es la pokeball */
-  cursor: url('pokeball.png'), auto;
+
+
+body {
+
   font-family: 'Poppins', sans-serif;
+
   min-height: 100vh;
+
+  /* CAMBIO: Nuevo color de fondo solicitado */
+
   background: #cfd1f8 no-repeat fixed;
+
   background-size: cover;
+
   color: #333;
+
   text-align: center;
+
   margin: 0;
+
   overflow-x: auto; 
+
   overflow-y: scroll;
+
   position: relative;
+
 }
+
+
 
 /* 3. TÍTULO */
+
 h1 {
+
   font-family: 'Mitr', sans-serif;
+
   color: rgba(253, 91, 156); 
+
   font-size: 4.5em; 
+
   font-weight: 700;
+
   letter-spacing: 2px;
+
   text-transform: lowercase; 
+
   margin-top: 20px;
+
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  /* El título mantiene el cursor de la pokeball */
-  cursor: url('pokeball.png'), auto;
+
 }
+
+
 
 /* 4. CONTENEDOR Y LAYOUT */
+
 .container {
+
   position: relative;
+
   z-index: 1;
+
   min-width: 1120px; 
+
   max-width: 1120px; 
+
   margin: 40px auto;
+
   padding: 30px;
+
 }
+
+
 
 .results {
+
   display: flex;
+
   flex-direction: row;
+
   flex-wrap: wrap; 
+
   justify-content: center; 
+
   align-items: flex-start; 
+
   gap: 20px; 
+
   width: 1120px; 
+
 }
+
+
 
 /* 5. BOTONES */
+
 button {
+
   background: rgba(253, 91, 156);
+
   color: white;
+
   border: none;
+
   padding: 14px 28px;
+
   border-radius: 20px;
+
   font-size: 16px;
+
   font-weight: 600;
+
   margin: 0 10px;
+
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+
   box-shadow: 0 5px 15px rgba(253, 91, 156, 0.4);
-  /* Botones usan Pokeball pero con estilo pointer */
-  cursor: url('pokeball.png'), pointer;
+
+  cursor: url('pokeball.png'), pointer !important;
+
 }
+
+
 
 button:hover {
+
   transform: scale(1.1) rotate(-2deg);
+
   background: rgba(234, 65, 157);
+
   box-shadow: 0 8px 20px rgba(253, 91, 156, 0.6);
+
 }
 
-/* 6. CARTAS - EL CAMBIO IMPORTANTE AQUÍ */
 
-/* CURSOR ESPECIAL (Loveball) al entrar en la carta */
-.card, 
-.card * { 
-  cursor: url('loveball.png'), pointer !important; 
-}
+
+/* 6. CARTAS */
 
 .card {
+
   width: 360px; 
+
   height: 504px; 
+
   perspective: 1000px;
+
   position: relative;
+
   transition: transform 0.3s ease;
+
 }
+
+
 
 .card:hover {
+
   transform: translateY(-8px) scale(1.02);
+
 }
+
+
+
+/* Cursor especial para elementos de la carta */
+
+.card, .card-inner, .card-front, .card-back, .card-front img, .card-back img {
+
+  cursor: url('loveball.png'), pointer !important;
+
+}
+
+
 
 .card-inner {
+
   position: relative;
+
   width: 100%;
+
   height: 100%;
+
   transform-style: preserve-3d;
+
   transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
   border-radius: 25px;
+
   pointer-events: auto; 
+
 }
+
+
 
 .card.flipped .card-inner {
+
   transform: rotateY(180deg);
+
 }
+
+
 
 .card-front, .card-back {
+
   position: absolute;
+
   width: 100%;
+
   height: 100%;
+
   backface-visibility: hidden;
+
   border-radius: 25px;
+
   overflow: hidden;
+
+  /* CAMBIO: Borde más finito (1.5px) y color solicitado */
+
   border: 1.5px solid #c7d7f9;
+
 }
+
+
 
 .card-back {
+
   transform: rotateY(180deg);
+
 }
+
+
 
 .card-back img, .card-front img {
+
   width: 100%;
+
   height: 100%;
+
   object-fit: cover;
+
   display: block;
+
 }
+
+
 
 /* --- EFECTOS DE BRILLO (GLOW) --- */
+
 .glow-sur .card-inner, 
+
 .glow-sfa .card-inner, 
+
 .glow-sir .card-inner {
+
     transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55), box-shadow 0.5s ease-in-out !important;
+
 }
 
+
+
 .glow-sur .card-inner { box-shadow: 0 0 25px 10px rgba(255, 215, 0, 0.8); }
+
 .glow-sfa .card-inner { box-shadow: 0 0 25px 10px rgba(155, 93, 229, 0.8); }
+
+.glow-sir .card-inner { box-shadow: 0 0 25px 10px rgba(255, 105, 180, 0.8); }  font-size: 4.5em; 
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  text-transform: lowercase; 
+
+  margin-top: 0;
+
+  /* Sombra suave para que resalte más */
+
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+
+
+/* 4. CONTENEDOR */
+
+.container {
+
+  position: relative;
+
+  z-index: 1;
+
+  min-width: 1120px; 
+
+  max-width: 1120px; 
+
+  margin: 40px auto;
+
+  padding: 30px;
+
+}
+
+
+
+.buttons {
+
+  margin-bottom: 20px;
+
+}
+
+
+
+/* 5. BOTONES (Color actualizado: rgba(253, 91, 156)) */
+
+button {
+
+  /* Ahora con el color sólido solicitado */
+
+  background: rgba(253, 91, 156);
+
+  color: white;
+
+  border: none;
+
+  padding: 14px 28px;
+
+  border-radius: 20px;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  margin: 0 10px;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+
+  
+
+  /* Sombra sutil basada en el nuevo color */
+
+  box-shadow: 0 5px 15px rgba(253, 91, 156, 0.4);
+
+}
+
+
+
+button:hover {
+
+  transform: scale(1.1) rotate(-2deg);
+
+  /* Un color un poco más oscuro al pasar el mouse para dar feedback */
+
+  background: rgba(234, 65, 157);
+
+  box-shadow: 0 8px 20px rgba(253, 91, 156, 0.6);
+
+}
+
+/* 6. LAYOUT DE CARTAS */
+
+.results {
+
+  display: flex;
+
+  flex-direction: row;
+
+  flex-wrap: wrap; 
+
+  justify-content: center; 
+
+  align-items: flex-start; 
+
+  gap: 20px; 
+
+  width: 1120px; 
+
+}
+
+
+
+/* Aplicamos el cursor a la carta Y a todo lo que tiene dentro */
+
+.card, 
+
+.card-inner, 
+
+.card-front, 
+
+.card-back,
+
+.card-front img {
+
+  /* Forzamos el cursor Loveball con !important */
+
+  cursor: url('pokeball.png'), pointer !important;
+
+}
+
+
+
+.card {
+
+  width: 360px; 
+
+  height: 504px; 
+
+  perspective: 1000px;
+
+  position: relative;
+
+  overflow: visible;
+
+  transition: transform 0.3s ease;
+
+}
+
+
+
+.card:hover {
+
+  transform: translateY(-8px) scale(1.02);
+
+}
+
+
+
+.card-inner {
+
+  position: relative;
+
+  width: 100%;
+
+  height: 100%;
+
+  transform-style: preserve-3d;
+
+  transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+  border-radius: 25px;
+
+  /* Evita que los clics se pierdan */
+
+  pointer-events: auto; 
+
+}
+
+
+
+.card.flipped .card-inner {
+
+  transform: rotateY(180deg);
+
+}
+
+
+
+.card-front, .card-back {
+
+  position: absolute;
+
+  width: 100%;
+
+  height: 100%;
+
+  backface-visibility: hidden;
+
+  border-radius: 25px;
+
+  overflow: hidden;
+
+  border: 4px solid white;
+
+}
+
+
+
+.card-back {
+
+  transform: rotateY(180deg);
+
+}
+
+
+
+.card-back img, .card-front img {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+}
+
+
+
+/* --- CORRECCIÓN DE BRILLOS (GLOW) --- */
+
+.glow-sur .card-inner, 
+
+.glow-sfa .card-inner, 
+
+.glow-sir .card-inner {
+
+    /* Mantenemos giro y brillo sincronizados */
+
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55), box-shadow 0.5s ease-in-out !important;
+
+}
+
+
+
+.glow-sur .card-inner { box-shadow: 0 0 25px 10px rgba(255, 215, 0, 0.8); }
+
+.glow-sfa .card-inner { box-shadow: 0 0 25px 10px rgba(155, 93, 229, 0.8); }
+
 .glow-sir .card-inner { box-shadow: 0 0 25px 10px rgba(255, 105, 180, 0.8); }

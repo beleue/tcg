@@ -9,24 +9,32 @@ async function loadCards() {
   }
 }
 
+/**
+ * Selecciona una carta basada en su peso y devuelve tanto la carta como su posición.
+ */
 function weightedRandom(cards) {
   const totalWeight = cards.reduce((s, c) => s + (c.weight || 0), 0);
-  if (totalWeight <= 0) return null; // Evita errores si el mazo se queda vacío
+  if (totalWeight <= 0) return { card: null, index: -1 };
   
   let random = Math.random() * totalWeight;
-  for (let card of cards) {
-    random -= (card.weight || 0);
-    if (random <= 0) return card;
+  for (let i = 0; i < cards.length; i++) {
+    random -= (cards[i].weight || 0);
+    if (random <= 0) return { card: cards[i], index: i };
   }
-  return null;
+  return { card: null, index: -1 };
 }
 
+/**
+ * Mapea la rareza a la clase CSS, incluyendo las clases de glow.
+ */
 function rarityClass(rarity) {
   if (!rarity) return "common";
   const r = rarity.toString().trim().toLowerCase();
-  if (r === "sur") return "sur glow-sur"; 
-  if (r === "sfa") return "sfa glow-sfa"; 
-  if (r === "sir") return "sir glow-sir"; 
+  
+  if (r === "sur") return "sur glow-sur"; // Gold Glow
+  if (r === "sfa") return "sfa glow-sfa"; // Purple Glow
+  if (r === "sir") return "sir glow-sir"; // Pink Glow
+  
   return "common";
 }
 
@@ -41,6 +49,7 @@ async function setup() {
 
   function renderDrawn(drawn) {
     resultsDiv.innerHTML = "";
+
     drawn.forEach(card => {
       const cardDiv = document.createElement("div");
       cardDiv.className = "card"; 
@@ -48,7 +57,7 @@ async function setup() {
       const specialClasses = rarityClass(card.rarity);
       cardDiv.dataset.rarity = specialClasses;
 
-      // Elegimos una imagen al azar de las disponibles para esa carta
+      // Imagen aleatoria de la lista de la carta
       const randomImage = card.images[Math.floor(Math.random() * card.images.length)];
 
       cardDiv.innerHTML = `
@@ -62,6 +71,7 @@ async function setup() {
         </div>
       `;
 
+      // Evento de clic para girar y aplicar el glow
       cardDiv.addEventListener("click", function() {
         if (!this.classList.contains("flipped")) {
           this.classList.add("flipped");
@@ -74,29 +84,31 @@ async function setup() {
     });
   }
 
-  // --- FUNCIÓN ACTUALIZADA: SIN DUPLICADOS ---
   function draw(n) {
     const drawn = [];
-    // Creamos una copia del mazo para poder quitar cartas sin romper el original
+    // Clonamos el mazo original para poder extraer cartas sin afectarlo permanentemente
     let pool = [...cards]; 
 
     for (let i = 0; i < n; i++) {
-      const c = weightedRandom(pool);
-      if (!c) break;
-      
-      drawn.push(c);
+      if (pool.length === 0) break; // Detener si nos quedamos sin cartas en el JSON
 
-      // Eliminamos la carta seleccionada del pool para que no pueda salir otra vez
-      // Buscamos por nombre o ID (asumiendo que card.name es único)
-      pool = pool.filter(card => card !== c); 
+      const result = weightedRandom(pool);
+      
+      if (result.card) {
+        drawn.push(result.card);
+        // Quitamos la carta del mazo temporal para que no salga repetida
+        pool.splice(result.index, 1);
+      }
     }
 
     renderDrawn(drawn);
   }
 
+  // Event Listeners
   drawOneBtn?.addEventListener("click", () => draw(1));
   drawFiveBtn?.addEventListener("click", () => draw(5));
   drawTenBtn?.addEventListener("click", () => draw(10));
 }
 
+// Iniciamos la configuración
 setup();

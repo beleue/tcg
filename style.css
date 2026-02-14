@@ -4,18 +4,20 @@
 /* 2. CONFIGURACIÓN GLOBAL */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html, body {
+body {
   background: #d6e0ef no-repeat fixed;
   background-size: cover;
   color: #ff6666;
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
-  margin: 0;
-  padding: 0;
   overflow-x: hidden;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrado horizontal del body */
   cursor: url('pokeball.png'), auto;
 }
 
@@ -23,40 +25,41 @@ html, body {
 h1 {
   font-family: 'Mitr', sans-serif;
   color: #ff6666; 
-  font-size: clamp(2.5em, 8vw, 4.5em); /* Se ajusta el tamaño en móviles */
+  font-size: 4.5em; 
   font-weight: 700;
   text-transform: lowercase; 
-  margin: 20px 0;
+  margin: 40px 0 20px 0;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* 4. CONTENEDOR PRINCIPAL (EL SECRETO DEL CENTRADO) */
+/* 4. CONTENEDORES */
 .container {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;    /* Centra todo horizontalmente */
-  justify-content: flex-start;
-  width: 100%;
-  padding: 20px;
+  align-items: center;
 }
 
 .buttons {
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   display: flex;
+  gap: 15px;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
 }
 
-/* 5. RESULTADOS (Aquí se fuerzan las 3 columnas) */
+/* 5. RESULTADOS (Forzado a 2 columnas de tamaño original) */
 .results {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* Centra las cartas si hay menos de 3 */
-  gap: 25px;
-  /* El ancho máximo es (360px * 3) + (25px * 2) = 1130px */
-  max-width: 1130px; 
+  display: grid;
+  /* Mantenemos el tamaño original de 360px */
+  grid-template-columns: repeat(auto-fit, 360px); 
+  justify-content: center; 
+  gap: 30px; 
+  width: 100%;
+  /* Limitamos el ancho para que NO quepan 3 cartas (360*3 = 1080) */
+  /* Con 800px solo caben 2 cartas de 360px + gap */
+  max-width: 800px; 
   margin: 0 auto;
+  padding-bottom: 50px;
 }
 
 /* 6. BOTONES */
@@ -68,31 +71,26 @@ button {
   border-radius: 20px;
   font-size: 16px;
   font-weight: 700;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   cursor: url('pokeball.png'), pointer;
+  transition: transform 0.2s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
 button:hover {
-  transform: scale(1.1) rotate(-2deg);
+  transform: scale(1.1);
   background: #fff5d1;
 }
 
-/* 7. CARTAS */
+/* 7. CARTAS (TAMAÑO ORIGINAL) */
 .card, .card * {
   cursor: url('loveball.png'), pointer !important;
 }
 
 .card {
-  width: 360px; /* Mantenemos tu tamaño */
+  width: 360px; 
   height: 504px; 
   perspective: 1000px;
   position: relative;
-}
-
-.card:hover {
-  transform: translateY(-8px) scale(1.02);
-  transition: transform 0.3s ease;
 }
 
 .card-inner {
@@ -126,10 +124,9 @@ button:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
-/* --- EFECTOS DE BRILLO (GLOW) --- */
+/* --- GLOWS --- */
 .glow-sur .card-inner { box-shadow: 0 0 25px 10px rgba(255, 215, 0, 0.6); }
 .glow-sfa .card-inner { box-shadow: 0 0 25px 10px rgba(155, 93, 229, 0.6); }
 .glow-sir .card-inner { box-shadow: 0 0 25px 10px rgba(255, 105, 180, 0.6); }

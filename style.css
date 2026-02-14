@@ -7,11 +7,11 @@
 }
 
 html, body {
-  /* Fondo azul suave solicitado anteriormente */
+  /* Fondo azul suave solicitado */
   background: #d6e0ef no-repeat fixed;
   background-size: cover;
-  /* CAMBIO: Letras en rojo coral #ff6666 */
-  color: #ff6666;
+  /* Color de letras principal */
+  color: #eaaf9e;
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
   text-align: center;
@@ -26,20 +26,20 @@ html, body {
 /* 3. TÍTULO */
 h1 {
   font-family: 'Mitr', sans-serif;
-  /* CAMBIO: Título en #ff6666 */
-  color: #ff6666; 
+  color: #eaaf9e; 
   font-size: 4.5em; 
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: lowercase; 
   margin-top: 20px;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* 4. CONTENEDOR Y LAYOUT (3 cartas por fila) */
+/* 4. CONTENEDOR Y LAYOUT (Ajustado para 3 cartas por fila) */
 .container {
   position: relative;
   z-index: 1;
+  /* Calculado: (360px * 3) + (gap de 20px * 2) + padding */
   width: 1160px;
   margin: 40px auto;
   padding: 20px;
@@ -56,17 +56,17 @@ h1 {
   justify-content: center; 
   align-items: flex-start; 
   gap: 20px; 
-  /* Ancho ajustado para 3 cartas de 360px + gaps */
+  /* Forzamos el ancho para que la cuarta carta baje automáticamente */
   width: 1120px; 
   margin: 20px auto;
 }
 
 /* 5. BOTONES */
 button {
-  /* Fondo crema amarillento */
+  /* Color de fondo solicitado */
   background: #ffefb4;
-  /* CAMBIO: Letras del botón en #ff6666 */
-  color: #ff6666; 
+  /* Letras del botón iguales al color de las letras generales */
+  color: #eaaf9e; 
   border: 1px solid #f2dfa0;
   padding: 14px 28px;
   border-radius: 20px;
@@ -86,13 +86,14 @@ button:hover {
 
 /* 6. CARTAS Y CURSOR LOVEBALL */
 
-/* Cursor Loveball solo para las cartas y su interior */
+/* Cursor Loveball para las cartas */
 .card, 
 .card * {
   cursor: url('loveball.png'), pointer !important;
 }
 
 .card {
+  /* Mantenemos tu tamaño original */
   width: 360px; 
   height: 504px; 
   perspective: 1000px;
@@ -126,6 +127,7 @@ button:hover {
   backface-visibility: hidden;
   border-radius: 25px;
   overflow: hidden;
+  /* Borde sutil que combina con el fondo */
   border: 1.5px solid #c7d7f9;
 }
 

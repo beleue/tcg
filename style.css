@@ -10,8 +10,8 @@ html, body {
   /* Fondo azul muy clarito */
   background: #f0fdfd no-repeat fixed;
   background-size: cover;
-  /* Letras color crema */
-  color: #fdf8f0;
+  /* INTERCAMBIO: Color de letras ahora es #fdf0f0 */
+  color: #fdf0f0;
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
   text-align: center;
@@ -26,13 +26,12 @@ html, body {
 /* 3. TÍTULO */
 h1 {
   font-family: 'Mitr', sans-serif;
-  color: #fdf8f0; 
+  color: #fdf0f0; 
   font-size: 4.5em; 
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: lowercase; 
   margin-top: 20px;
-  /* Sombra para legibilidad sobre fondo claro */
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
 }
 
@@ -46,35 +45,44 @@ h1 {
   padding: 30px;
 }
 
+/* ESPACIADO EXTRA: Para que los botones no estén pegados a las cartas */
+.buttons {
+  margin-bottom: 60px; /* Más distancia con las cartas */
+}
+
 .results {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap; 
   justify-content: center; 
   align-items: flex-start; 
-  gap: 20px; 
-  width: 1120px; 
+  gap: 40px; /* Aumentado el gap para evitar colisiones al girar */
+  width: 1120px;
+  margin-top: 20px;
 }
 
 /* 5. BOTONES */
 button {
-  background: #fdf0f0;
-  /* Texto oscuro para que se vea sobre el botón claro */
-  color: #333; 
+  /* INTERCAMBIO: Fondo de botón ahora es #fdf8f0 */
+  background: #fdf8f0;
+  /* Letras del botón iguales al color de las letras generales (#fdf0f0) */
+  color: #fdf0f0; 
   border: 1px solid #e0d0d0;
   padding: 14px 28px;
   border-radius: 20px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700; /* Un poco más de grosor para que resalte el color claro */
   margin: 0 10px;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   cursor: url('pokeball.png'), pointer;
+  /* Sombra de texto suave para que el color crema se lea sobre fondo crema */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
   transform: scale(1.1) rotate(-2deg);
-  background: #f5e5e5;
+  background: #ffffff;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -92,6 +100,8 @@ button:hover {
   perspective: 1000px;
   position: relative;
   transition: transform 0.3s ease;
+  /* Margen extra para que al rotar en 3D no se encime visualmente */
+  margin-bottom: 20px;
 }
 
 .card:hover {

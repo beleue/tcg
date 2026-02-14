@@ -1,7 +1,7 @@
 /* 1. IMPORTE DE FUENTES */
 @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@400;600;700&family=Poppins:wght@400;600&display=swap');
 
-/* 2. CONFIGURACIÓN GLOBAL Y CURSOR POKEBALL */
+/* 2. CONFIGURACIÓN GLOBAL */
 * {
   box-sizing: border-box;
 }
@@ -12,11 +12,10 @@ html, body {
   color: #ff6666;
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
-  text-align: center;
   margin: 0;
-  overflow-x: hidden; /* Evita scroll lateral innecesario */
-  overflow-y: scroll;
-  position: relative;
+  padding: 0;
+  overflow-x: hidden;
+  text-align: center;
   cursor: url('pokeball.png'), auto;
 }
 
@@ -24,45 +23,43 @@ html, body {
 h1 {
   font-family: 'Mitr', sans-serif;
   color: #ff6666; 
-  font-size: 4.5em; 
+  font-size: clamp(2.5em, 8vw, 4.5em); /* Se ajusta el tamaño en móviles */
   font-weight: 700;
-  letter-spacing: 2px;
   text-transform: lowercase; 
-  margin-top: 20px;
+  margin: 20px 0;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* 4. CONTENEDOR Y LAYOUT (Ajuste para centrar) */
+/* 4. CONTENEDOR PRINCIPAL (EL SECRETO DEL CENTRADO) */
 .container {
-  position: relative;
-  z-index: 1;
-  width: 100%; /* Ocupa todo el ancho */
-  max-width: 1200px; /* Límite para que no se estire infinito */
-  margin: 0 auto; /* Centra el contenedor */
-  padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra los hijos (título, botones, resultados) */
+  align-items: center;    /* Centra todo horizontalmente */
+  justify-content: flex-start;
+  width: 100%;
+  padding: 20px;
 }
 
 .buttons {
-  margin-bottom: 60px;
-  width: 100%;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
+/* 5. RESULTADOS (Aquí se fuerzan las 3 columnas) */
 .results {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap; 
-  justify-content: center; /* CENTRA LAS CARTAS HORIZONTALMENTE */
-  align-items: flex-start; 
-  gap: 30px; 
-  /* Ancho máximo para que quepan 3 cartas (360x3 + gaps) */
-  max-width: 1160px; 
-  margin: 0 auto; /* Centra el bloque de resultados */
+  flex-wrap: wrap;
+  justify-content: center; /* Centra las cartas si hay menos de 3 */
+  gap: 25px;
+  /* El ancho máximo es (360px * 3) + (25px * 2) = 1130px */
+  max-width: 1130px; 
+  margin: 0 auto;
 }
 
-/* 5. BOTONES */
+/* 6. BOTONES */
 button {
   background: #ffefb4;
   color: #ff6666; 
@@ -71,8 +68,7 @@ button {
   border-radius: 20px;
   font-size: 16px;
   font-weight: 700;
-  margin: 10px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  transition: transform 0.2s, box-shadow 0.2s;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   cursor: url('pokeball.png'), pointer;
 }
@@ -80,25 +76,23 @@ button {
 button:hover {
   transform: scale(1.1) rotate(-2deg);
   background: #fff5d1;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* 6. CARTAS Y CURSOR LOVEBALL */
+/* 7. CARTAS */
 .card, .card * {
   cursor: url('loveball.png'), pointer !important;
 }
 
 .card {
-  width: 360px; 
+  width: 360px; /* Mantenemos tu tamaño */
   height: 504px; 
   perspective: 1000px;
   position: relative;
-  transition: transform 0.3s ease;
-  margin-bottom: 20px;
 }
 
 .card:hover {
   transform: translateY(-8px) scale(1.02);
+  transition: transform 0.3s ease;
 }
 
 .card-inner {

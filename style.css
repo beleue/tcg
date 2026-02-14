@@ -1,38 +1,39 @@
 /* 1. IMPORTE DE FUENTES */
 @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@400;600;700&family=Poppins:wght@400;600&display=swap');
 
-/* 2. CONFIGURACIÓN GLOBAL Y CURSOR POKEBALL */
+/* 2. CONFIGURACIÓN GLOBAL */
 * {
   box-sizing: border-box;
 }
 
+/* CURSOR GENERAL (Pokeball) */
 html, body {
-  /* Fondo azul muy clarito */
-  background: #f0fdfd no-repeat fixed;
-  background-size: cover;
-  /* INTERCAMBIO: Color de letras ahora es #fdf0f0 */
-  color: #fdf0f0;
+  /* Usamos auto para que el navegador decida, pero la base es la pokeball */
+  cursor: url('pokeball.png'), auto;
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
+  background: #cfd1f8 no-repeat fixed;
+  background-size: cover;
+  color: #333;
   text-align: center;
   margin: 0;
   overflow-x: auto; 
   overflow-y: scroll;
   position: relative;
-  /* Cursor general */
-  cursor: url('pokeball.png'), auto;
 }
 
 /* 3. TÍTULO */
 h1 {
   font-family: 'Mitr', sans-serif;
-  color: #fdf0f0; 
+  color: rgba(253, 91, 156); 
   font-size: 4.5em; 
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: lowercase; 
   margin-top: 20px;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  /* El título mantiene el cursor de la pokeball */
+  cursor: url('pokeball.png'), auto;
 }
 
 /* 4. CONTENEDOR Y LAYOUT */
@@ -45,53 +46,44 @@ h1 {
   padding: 30px;
 }
 
-/* ESPACIADO EXTRA: Para que los botones no estén pegados a las cartas */
-.buttons {
-  margin-bottom: 60px; /* Más distancia con las cartas */
-}
-
 .results {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap; 
   justify-content: center; 
   align-items: flex-start; 
-  gap: 40px; /* Aumentado el gap para evitar colisiones al girar */
-  width: 1120px;
-  margin-top: 20px;
+  gap: 20px; 
+  width: 1120px; 
 }
 
 /* 5. BOTONES */
 button {
-  /* INTERCAMBIO: Fondo de botón ahora es #fdf8f0 */
-  background: #fdf8f0;
-  /* Letras del botón iguales al color de las letras generales (#fdf0f0) */
-  color: #fdf0f0; 
-  border: 1px solid #e0d0d0;
+  background: rgba(253, 91, 156);
+  color: white;
+  border: none;
   padding: 14px 28px;
   border-radius: 20px;
   font-size: 16px;
-  font-weight: 700; /* Un poco más de grosor para que resalte el color claro */
+  font-weight: 600;
   margin: 0 10px;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 5px 15px rgba(253, 91, 156, 0.4);
+  /* Botones usan Pokeball pero con estilo pointer */
   cursor: url('pokeball.png'), pointer;
-  /* Sombra de texto suave para que el color crema se lea sobre fondo crema */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
   transform: scale(1.1) rotate(-2deg);
-  background: #ffffff;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  background: rgba(234, 65, 157);
+  box-shadow: 0 8px 20px rgba(253, 91, 156, 0.6);
 }
 
-/* 6. CARTAS Y CURSOR LOVEBALL */
+/* 6. CARTAS - EL CAMBIO IMPORTANTE AQUÍ */
 
-/* Forzamos que la carta y TODO lo que contenga use la Loveball */
+/* CURSOR ESPECIAL (Loveball) al entrar en la carta */
 .card, 
-.card * {
-  cursor: url('loveball.png'), pointer !important;
+.card * { 
+  cursor: url('loveball.png'), pointer !important; 
 }
 
 .card {
@@ -100,8 +92,6 @@ button:hover {
   perspective: 1000px;
   position: relative;
   transition: transform 0.3s ease;
-  /* Margen extra para que al rotar en 3D no se encime visualmente */
-  margin-bottom: 20px;
 }
 
 .card:hover {

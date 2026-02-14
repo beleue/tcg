@@ -144,6 +144,18 @@ button:hover {
               box-shadow 0.5s ease-in-out !important;
 }
 
-.glow-sur .card-inner { box-shadow: 0 0 25px 10px rgba(255, 215, 0, 0.8); }
-.glow-sfa .card-inner { box-shadow: 0 0 25px 10px rgba(155, 93, 229, 0.8); }
-.glow-sir .card-inner { box-shadow: 0 0 25px 10px rgba(255, 105, 180, 0.8); }
+/* ⭐ GLOW FIX — aplicar al contenedor real */
+.glow-sur {
+  box-shadow: 0 0 35px 12px rgba(255, 215, 0, 0.8);
+  border-radius: 25px;
+}
+
+.glow-sfa {
+  box-shadow: 0 0 35px 12px rgba(155, 93, 229, 0.8);
+  border-radius: 25px;
+}
+
+.glow-sir {
+  box-shadow: 0 0 35px 12px rgba(255, 105, 180, 0.8);
+  border-radius: 25px;
+}

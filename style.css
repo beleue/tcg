@@ -1,74 +1,82 @@
-/* 1. FUENTES */
+/* 1. IMPORTE DE FUENTES */
 @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@700&family=Poppins:wght@400;700&display=swap');
 
-/* 2. RESET TOTAL (Elimina cualquier margen fantasma) */
+/* 2. CONFIGURACIÓN BASE */
 * {
-  box-sizing: border-box !important;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 body {
-  background: #d6e0ef;
+  background: #d6e0ef no-repeat fixed;
+  background-size: cover;
   color: #ff6666;
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
-  width: 100vw;
+  text-align: center;
   overflow-x: hidden;
-  /* Esto centra TODO lo que esté dentro del body */
+  cursor: url('pokeball.png'), auto;
+  /* Centrado del contenido principal */
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  cursor: url('pokeball.png'), auto;
+  align-items: center;
 }
 
 /* 3. TÍTULO */
 h1 {
   font-family: 'Mitr', sans-serif;
-  font-size: 4.5em;
+  color: #ff6666; 
+  font-size: 4.5em; 
+  font-weight: 700;
+  text-transform: lowercase; 
   margin: 40px 0;
-  text-align: center;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* 4. BOTONES */
+/* 4. CONTENEDOR DE BOTONES (Restaurado) */
 .buttons {
+  margin-bottom: 40px; /* Margen estándar */
   display: flex;
+  gap: 15px;
   justify-content: center;
-  gap: 20px;
-  margin-bottom: 60px;
-  width: 100%;
 }
 
 button {
   background: #ffefb4;
-  color: #ff6666;
+  color: #ff6666; 
   border: 1px solid #f2dfa0;
   padding: 14px 28px;
   border-radius: 20px;
+  font-size: 16px;
   font-weight: 700;
   cursor: url('pokeball.png'), pointer;
-  transition: 0.2s;
+  transition: transform 0.2s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
-/* 5. RESULTADOS (EL ARREGLO DEFINITIVO) */
+button:hover {
+  transform: scale(1.1);
+  background: #fff5d1;
+}
+
+/* 5. RESULTADOS (Forzado a 2 columnas centradas) */
 #results {
   display: grid !important;
-  /* Creamos 2 columnas fijas de 360px */
-  grid-template-columns: 360px 360px !important; 
-  /* Centramos la rejilla completa */
-  justify-content: center !important; 
-  /* Espacio entre cartas */
-  gap: 40px !important; 
-  width: 100% !important;
-  max-width: 1200px;
-  margin: 0 auto !important;
-  padding-bottom: 100px;
+  /* Dos columnas de 360px (el tamaño original) */
+  grid-template-columns: repeat(2, 360px); 
+  justify-content: center; 
+  gap: 30px; 
+  width: 100%;
+  max-width: 800px; /* Espacio para 2 cartas + gap */
+  margin: 0 auto;
+  padding-bottom: 60px;
 }
 
-/* Si la pantalla es pequeña (móvil), pasamos a 1 columna */
-@media (max-width: 800px) {
+/* Ajuste para móviles: si la pantalla es pequeña, se pone 1 columna */
+@media (max-width: 780px) {
   #results {
-    grid-template-columns: 360px !important;
+    grid-template-columns: 360px;
   }
 }
 
@@ -78,9 +86,10 @@ button {
 }
 
 .card {
-  width: 360px;
-  height: 504px;
+  width: 360px; 
+  height: 504px; 
   perspective: 1000px;
+  position: relative;
 }
 
 .card-inner {
@@ -114,9 +123,10 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
-/* 7. GLOWS */
+/* 7. EFECTOS DE BRILLO */
 .glow-sur .card-inner { box-shadow: 0 0 25px 10px rgba(255, 215, 0, 0.6); }
 .glow-sfa .card-inner { box-shadow: 0 0 25px 10px rgba(155, 93, 229, 0.6); }
 .glow-sir .card-inner { box-shadow: 0 0 25px 10px rgba(255, 105, 180, 0.6); }

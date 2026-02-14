@@ -1,39 +1,39 @@
 /* 1. IMPORTE DE FUENTES */
 @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@400;600;700&family=Poppins:wght@400;600&display=swap');
 
-/* 2. CONFIGURACIÓN GLOBAL */
+/* 2. CONFIGURACIÓN GLOBAL Y CURSOR POKEBALL */
 * {
   box-sizing: border-box;
 }
 
-/* CURSOR GENERAL (Pokeball) */
 html, body {
-  /* Usamos auto para que el navegador decida, pero la base es la pokeball */
-  cursor: url('pokeball.png'), auto;
+  /* Fondo azul muy clarito */
+  background: #f0fdfd no-repeat fixed;
+  background-size: cover;
+  /* Letras color crema */
+  color: #fdf8f0;
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
-  background: #cfd1f8 no-repeat fixed;
-  background-size: cover;
-  color: #333;
   text-align: center;
   margin: 0;
   overflow-x: auto; 
   overflow-y: scroll;
   position: relative;
+  /* Cursor general */
+  cursor: url('pokeball.png'), auto;
 }
 
 /* 3. TÍTULO */
 h1 {
   font-family: 'Mitr', sans-serif;
-  color: rgba(253, 91, 156); 
+  color: #fdf8f0; 
   font-size: 4.5em; 
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: lowercase; 
   margin-top: 20px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  /* El título mantiene el cursor de la pokeball */
-  cursor: url('pokeball.png'), auto;
+  /* Sombra para legibilidad sobre fondo claro */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* 4. CONTENEDOR Y LAYOUT */
@@ -58,32 +58,32 @@ h1 {
 
 /* 5. BOTONES */
 button {
-  background: rgba(253, 91, 156);
-  color: white;
-  border: none;
+  background: #fdf0f0;
+  /* Texto oscuro para que se vea sobre el botón claro */
+  color: #333; 
+  border: 1px solid #e0d0d0;
   padding: 14px 28px;
   border-radius: 20px;
   font-size: 16px;
   font-weight: 600;
   margin: 0 10px;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-  box-shadow: 0 5px 15px rgba(253, 91, 156, 0.4);
-  /* Botones usan Pokeball pero con estilo pointer */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   cursor: url('pokeball.png'), pointer;
 }
 
 button:hover {
   transform: scale(1.1) rotate(-2deg);
-  background: rgba(234, 65, 157);
-  box-shadow: 0 8px 20px rgba(253, 91, 156, 0.6);
+  background: #f5e5e5;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* 6. CARTAS - EL CAMBIO IMPORTANTE AQUÍ */
+/* 6. CARTAS Y CURSOR LOVEBALL */
 
-/* CURSOR ESPECIAL (Loveball) al entrar en la carta */
+/* Forzamos que la carta y TODO lo que contenga use la Loveball */
 .card, 
-.card * { 
-  cursor: url('loveball.png'), pointer !important; 
+.card * {
+  cursor: url('loveball.png'), pointer !important;
 }
 
 .card {

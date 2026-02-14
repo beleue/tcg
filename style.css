@@ -7,11 +7,11 @@
 }
 
 html, body {
-  /* Fondo azul muy clarito */
-  background: #f0fdfd no-repeat fixed;
+  /* Fondo azul suave solicitado */
+  background: #d6e0ef no-repeat fixed;
   background-size: cover;
-  /* INTERCAMBIO: Color de letras ahora es #fdf0f0 */
-  color: #fdf0f0;
+  /* Color de letras principal */
+  color: #eaaf9e;
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
   text-align: center;
@@ -26,28 +26,27 @@ html, body {
 /* 3. TÍTULO */
 h1 {
   font-family: 'Mitr', sans-serif;
-  color: #fdf0f0; 
+  color: #eaaf9e; 
   font-size: 4.5em; 
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: lowercase; 
   margin-top: 20px;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* 4. CONTENEDOR Y LAYOUT */
+/* 4. CONTENEDOR Y LAYOUT (Ajustado para 3 cartas por fila) */
 .container {
   position: relative;
   z-index: 1;
-  min-width: 1120px; 
-  max-width: 1120px; 
+  /* Calculado: (360px * 3) + (gap de 20px * 2) + padding */
+  width: 1160px;
   margin: 40px auto;
-  padding: 30px;
+  padding: 20px;
 }
 
-/* ESPACIADO EXTRA: Para que los botones no estén pegados a las cartas */
 .buttons {
-  margin-bottom: 60px; /* Más distancia con las cartas */
+  margin-bottom: 60px;
 }
 
 .results {
@@ -56,51 +55,50 @@ h1 {
   flex-wrap: wrap; 
   justify-content: center; 
   align-items: flex-start; 
-  gap: 40px; /* Aumentado el gap para evitar colisiones al girar */
-  width: 1120px;
-  margin-top: 20px;
+  gap: 20px; 
+  /* Forzamos el ancho para que la cuarta carta baje automáticamente */
+  width: 1120px; 
+  margin: 20px auto;
 }
 
 /* 5. BOTONES */
 button {
-  /* INTERCAMBIO: Fondo de botón ahora es #fdf8f0 */
-  background: #fdf8f0;
-  /* Letras del botón iguales al color de las letras generales (#fdf0f0) */
-  color: #fdf0f0; 
-  border: 1px solid #e0d0d0;
+  /* Color de fondo solicitado */
+  background: #ffefb4;
+  /* Letras del botón iguales al color de las letras generales */
+  color: #eaaf9e; 
+  border: 1px solid #f2dfa0;
   padding: 14px 28px;
   border-radius: 20px;
   font-size: 16px;
-  font-weight: 700; /* Un poco más de grosor para que resalte el color claro */
+  font-weight: 700;
   margin: 0 10px;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   cursor: url('pokeball.png'), pointer;
-  /* Sombra de texto suave para que el color crema se lea sobre fondo crema */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
   transform: scale(1.1) rotate(-2deg);
-  background: #ffffff;
+  background: #fff5d1;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* 6. CARTAS Y CURSOR LOVEBALL */
 
-/* Forzamos que la carta y TODO lo que contenga use la Loveball */
+/* Cursor Loveball para las cartas */
 .card, 
 .card * {
   cursor: url('loveball.png'), pointer !important;
 }
 
 .card {
+  /* Mantenemos tu tamaño original */
   width: 360px; 
   height: 504px; 
   perspective: 1000px;
   position: relative;
   transition: transform 0.3s ease;
-  /* Margen extra para que al rotar en 3D no se encime visualmente */
   margin-bottom: 20px;
 }
 
@@ -129,6 +127,7 @@ button:hover {
   backface-visibility: hidden;
   border-radius: 25px;
   overflow: hidden;
+  /* Borde sutil que combina con el fondo */
   border: 1.5px solid #c7d7f9;
 }
 
@@ -150,6 +149,6 @@ button:hover {
     transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55), box-shadow 0.5s ease-in-out !important;
 }
 
-.glow-sur .card-inner { box-shadow: 0 0 25px 10px rgba(255, 215, 0, 0.8); }
-.glow-sfa .card-inner { box-shadow: 0 0 25px 10px rgba(155, 93, 229, 0.8); }
-.glow-sir .card-inner { box-shadow: 0 0 25px 10px rgba(255, 105, 180, 0.8); }
+.glow-sur .card-inner { box-shadow: 0 0 25px 10px rgba(255, 215, 0, 0.6); }
+.glow-sfa .card-inner { box-shadow: 0 0 25px 10px rgba(155, 93, 229, 0.6); }
+.glow-sir .card-inner { box-shadow: 0 0 25px 10px rgba(255, 105, 180, 0.6); }
